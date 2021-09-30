@@ -1,0 +1,37 @@
+.Header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    box-shadow: 0px 0px 5px #888888;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+
+.Header-logo {
+    height: 70px;
+    align-self: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .Header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        box-shadow: 0px 0px 5px #888888;
+        background-color: #ffffff;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+    }
+    
+    .Header-logo {
+        height: 40px;
+        align-self: center;
+    }
+}
