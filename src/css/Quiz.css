@@ -1,9 +1,13 @@
 .Quiz-container {
     display: flex;
+    flex-direction: column;
+    position: relative;
     width: 100%;
-    justify-content: center;
+    /* justify-content: center; */
+    align-items: center;
     margin-top: 70px;
     height: calc(100vh - 70px);
+    /* background-color: rosybrown; */
 }
 
 .Quiz-main {
@@ -14,6 +18,7 @@
     width: 100%;
     margin: 15px 4% 15px 4%;
     /* background-color: blueviolet; */
+    height: 100%;
 }
 
 .Quiz-titleArea {
@@ -27,7 +32,7 @@
 }
 .Quiz-subtitle {
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .QuizList-LoaderArea {
     display: flex;
@@ -74,6 +79,7 @@
     border-radius: 30px;
     padding-bottom: 40px;
     box-shadow: 0px 0px 5px #888888;
+    margin-top: 15px;
 }
 
 .Quiz-progressBar{
@@ -99,7 +105,9 @@
 .Quiz-respostas {
     display: flex;
     flex-direction: column;
-    margin: 0px 4% 0px 4%;
+    margin: 10px 4% 0px 4%;
+    height: 100%;
+    justify-content: center;
 }
 
 .Quiz-resposta {
@@ -184,6 +192,45 @@ input:focus {
     outline: none;
 }
 
+.Quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0px;
+    margin-top: 70px;
+    position: relative;
+    width: 100%;
+    background-color: #FFFFFF;
+    clear: both;
+}
+
+.Quiz-direitos {
+    font-weight: bold;
+    color: #000000;
+    font-size: 1vw;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Quiz-footerLinks {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-right: 2%;
+}
+
+.Quiz-footerLink {
+    color: #000000;
+    text-decoration: none;
+    font-size: 1vw;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Quiz-footerLink:hover {
+    color:rgba(0, 0, 0, 0.4)
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -231,5 +278,23 @@ input:focus {
     }
     .Quiz-subtituloCF {
         font-size: 5vw;
+    }
+    .Quiz-footer {
+        flex-direction: column;
+    }
+    .Quiz-direitos {
+        font-size: 4vw;
+        margin-bottom: 0%;
+    }
+    .Quiz-footerLinks {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        margin-right: 0%;
+    }
+    .Quiz-footerLink {
+        font-size: 4vw;
+        margin-top: 10px;
     }
   }
