@@ -17,6 +17,7 @@ const Quiz = () => {
     const [flow, setFlow] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [progressPercentage, setProgressPercentage] = useState(((countPerguntas+1) * 100)/perguntas.length)
 
     const nextQuestion = (indexResposta) => {
         const newFlow = flow + `${countPerguntas}${indexResposta}`
@@ -26,6 +27,7 @@ const Quiz = () => {
             const counter = countPerguntas + 1
             setCountPerguntas(counter)
             setPerguntaAtual(perguntas[counter])
+            setProgressPercentage(((counter+1) * 100)/perguntas.length)
         } else {
             setShowCardFinal(true)
         }
@@ -47,6 +49,7 @@ const Quiz = () => {
             setQuiz(quiz)
             setPerguntas(quiz.perguntas)
             setPerguntaAtual(quiz.perguntas[0])
+            setProgressPercentage(100/quiz.perguntas.length)
         }
         const loadQuiz = async () => {
             try {
@@ -62,6 +65,20 @@ const Quiz = () => {
         loadQuiz()
     },[key])
 
+    const progressStyle = () => {
+        const pp = progressPercentage
+        return {
+            backgroundColor: 'rgb(0,0,0,0.5)',
+            width: `${pp}%`,
+            height: '100%',
+            margin: '0px',
+            borderTopLeftRadius: '10px',
+            borderBottomLeftRadius: '10px',
+            borderTopRightRadius: pp === 100 ? '10px' : '0px',
+            borderBottomRightRadius: pp === 100 ? '10px' : '0px',
+        }
+    }
+
     return (
             <div className="Quiz-container">
                 {!loading && !showCardFinal ?
@@ -75,8 +92,9 @@ const Quiz = () => {
                                 <img src={`data:${quiz.imagem.mimetype};base64,${quiz.imagem.buffer}`} alt='quiz_img' className="Quiz-image"/>
                             </div>}
                             <div className="Quiz-card">
+                                <p className="Quiz-progressText">{countPerguntas+1} / {perguntas.length}</p>
                                 <div className="Quiz-progressBar">
-                                    <p className="Quiz-progressText">{countPerguntas+1} / {perguntas.length}</p>
+                                    <div className="Quiz-progress" style={progressStyle()} />
                                 </div>
                                 <p className="Quiz-pergunta">{perguntaAtual.texto}</p>
                                 <div className="Quiz-respostas">
@@ -103,23 +121,25 @@ const Quiz = () => {
                             <div className="QuizList-loader" />
                         </div>
                         :
-                        <div className="Quiz-cardFinal">
-                            <div className="Quiz-imageAreaCF">
-                                {quiz.cardFinal.imagem && <img src={`data:${quiz.cardFinal.imagem.mimetype};base64,${quiz.cardFinal.imagem.buffer}`} alt='quiz_img' className="Quiz-imageCF"/>}
+                        <div className="Quiz-cardFinalArea">
+                            <div className="Quiz-cardFinal">
+                                <div className="Quiz-imageAreaCF">
+                                    {quiz.cardFinal.imagem && <img src={`data:${quiz.cardFinal.imagem.mimetype};base64,${quiz.cardFinal.imagem.buffer}`} alt='quiz_img' className="Quiz-imageCF"/>}
+                                </div>
+                                <div>
+                                    <p className="Quiz-tituloCF">{quiz.cardFinal.titulo}</p>
+                                    <p className="Quiz-subtituloCF">{quiz.cardFinal.subtitulo}</p>
+                                </div>
+                                <form onSubmit={(e) => finishQuiz(e)}>
+                                    <input autoComplete="on" name="name" type="text" placeholder="Insira seu nome" className="Quiz-input" required onChange={(e) => setName(e.target.value)}/>
+                                    <input autoComplete="on" name="email" type="email" placeholder="Insira seu melhor e-mail" className="Quiz-input" required onChange={(e) => setEmail(e.target.value)}/>
+                                    <input type="submit" value={quiz.cardFinal.botao} className="Quiz-finalButton" />
+                                </form>
                             </div>
-                            <div>
-                                <p className="Quiz-tituloCF">{quiz.cardFinal.titulo}</p>
-                                <p className="Quiz-subtituloCF">{quiz.cardFinal.subtitulo}</p>
-                            </div>
-                            <form onSubmit={(e) => finishQuiz(e)}>
-                                <input autoComplete="on" name="name" type="text" placeholder="Insira seu nome" className="Quiz-input" required onChange={(e) => setName(e.target.value)}/>
-                                <input autoComplete="on" name="email" type="email" placeholder="Insira seu melhor e-mail" className="Quiz-input" required onChange={(e) => setEmail(e.target.value)}/>
-                                <input type="submit" value={quiz.cardFinal.botao} className="Quiz-finalButton" />
-                            </form>
                         </div>
                 }
                 {!loading && <div className="Quiz-footer">
-                    <p className="Quiz-direitos">LIFE + MONEY · 2020 © Todos os direitos reservados</p>
+                    <p className="Quiz-direitos">LIFE + MONEY · 2021 © Todos os direitos reservados</p>
                     <div className="Quiz-footerLinks">
                         <a href="https://lifeandmoney.com.br/termos-e-condicoes/" className="Quiz-footerLink">Termos e Condições Gerais de Uso</a>
                         <a href="https://lifeandmoney.com.br/politica-de-privacidade/" className="Quiz-footerLink">Política de Privacidade</a>
