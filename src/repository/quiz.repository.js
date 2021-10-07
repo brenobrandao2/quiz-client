@@ -33,7 +33,7 @@ export const getById = async (key) => {
         },
         body: JSON.stringify({key})
     }
-    const allQuiz = await fetch('http://137.184.132.242:3001/quiz/getById', opt).then(response => response.json())
+    const allQuiz = await fetch('http://137.184.132.242:3002/quiz/getById', opt).then(response => response.json())
     
     const quiz = allQuiz[0]
     const {_id, nome, titulo, subtitulo, imagem, duplicidade, perguntas, cardFinal, createdAt, lastModified, fluxos} = quiz
