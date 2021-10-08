@@ -274,7 +274,7 @@ input:focus {
       var(--colour1) 40px
     );
     background-size: 300% 100%;
-    animation: progress-animation 10s linear infinite; 
+    animation: progress-animation 20s linear infinite; 
 }
 
 @keyframes progress-animation {
