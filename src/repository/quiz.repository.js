@@ -1,5 +1,6 @@
 import { CardFinal } from "./cardFinal.repository"
 import { Pergunta } from "./pergunta.repository"
+import { base_url_db } from "../utils/baseUrls"
 
 export class Quiz {
     constructor(_id, nome, titulo, subtitulo, imagem, duplicidade, perguntas, cardFinal, createdAt, lastModified, fluxos) {
@@ -33,7 +34,7 @@ export const getById = async (key) => {
         },
         body: JSON.stringify({key})
     }
-    const allQuiz = await fetch('http://159.203.187.163:3002/quiz/getById', opt).then(response => response.json())
+    const allQuiz = await fetch(`${base_url_db}/quiz/getById`, opt).then(response => response.json())
     
     const quiz = allQuiz[0]
     const {_id, nome, titulo, subtitulo, imagem, duplicidade, perguntas, cardFinal, createdAt, lastModified, fluxos} = quiz
