@@ -139,13 +139,6 @@ const Quiz = () => {
                             </div>
                         </div>
                 }
-                {!loading && <div className="Quiz-footer">
-                    <p className="Quiz-direitos">LIFE + MONEY · 2021 © Todos os direitos reservados</p>
-                    <div className="Quiz-footerLinks">
-                        <a href="https://lifeandmoney.com.br/termos-e-condicoes/" className="Quiz-footerLink">Termos e Condições Gerais de Uso</a>
-                        <a href="https://lifeandmoney.com.br/politica-de-privacidade/" className="Quiz-footerLink">Política de Privacidade</a>
-                    </div>
-                </div>}
             </div>
     )
 }
