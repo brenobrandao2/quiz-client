@@ -1,5 +1,5 @@
-const lam_server = 'http://159.203.187.163'
-const dev_server = 'http://192.168.25.10'
+const lam_server = 'https://lifeandmoney.com.br/quiz-client-service'
+const dev_server = 'https://brenobrandao.site/quiz-client-service'
 
-export const server = lam_server
-export const base_url_db = `${server}:3002`
+export const base_url_client_quiz = 'https://quiz.brenobrandao.site/'
+export const base_url_db = dev_server
