@@ -71,7 +71,7 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 20px;
 }
 
@@ -79,10 +79,12 @@
     display: flex;
     align-items: center;
     width: 40%;
+    justify-content: center;
 }
 
 .Quiz-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 55vh;
     pointer-events: none;
 }
 
@@ -90,6 +92,7 @@
     display: flex;
     flex-direction: column;
     width: 40%;
+    height: max-content;
     border-radius: 30px;
     padding-bottom: 40px;
     box-shadow: 0px 0px 5px #888888;
@@ -156,11 +159,13 @@
 .Quiz-imageAreaCF {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 50%;
 }
 
 .Quiz-imageCF {
-    width: 100%;
+    max-width: 100%;
+    max-height: 20vh;
     pointer-events: none;
 }
 
@@ -173,7 +178,7 @@
 
 .Quiz-subtituloCF {
     color: rgba(0, 0, 0, 0.5);
-    margin: 0px 10px 15px 10px;
+    margin: 0px 10% 15px 10%;
 }
 
 .Quiz-input {
