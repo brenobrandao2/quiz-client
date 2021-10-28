@@ -101,7 +101,7 @@
 
 .Quiz-progressBar{
     width: 92%;
-    height: 25px;
+    height: 12px;
     border-radius: 10px;
     background-color: #E1E1E1;
     align-self: center;
@@ -317,7 +317,7 @@ input:focus {
         margin-top: 1.5vh;
     }
     .Quiz-progressBar{
-        height: 20px;
+        height: 12px;
     }
     .Quiz-imageArea {
         display: none;
