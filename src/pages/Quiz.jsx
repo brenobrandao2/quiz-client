@@ -38,7 +38,7 @@ const Quiz = () => {
         e.preventDefault();
         let redirecionamento = quiz.fluxos[flow].redirecionamento || 'https://lifeandmoney.com.br/'
         if (!redirecionamento.includes('http')) redirecionamento = `https://${redirecionamento}`
-        await createContact(name, email, quiz._id)
+        createContact(name, email, quiz._id)
         window.location.href = redirecionamento
         // setLoading(false)
         return false
