@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import '../css/Quiz.css'
 import { Quiz as QuizClass, getById } from '../repository/quiz.repository'
+import { registerAccess, registerAnswer, registerLead } from '../repository/metric.repository'
 
 import { Pergunta } from '../repository/pergunta.repository';
 import { createContact } from '../repository/contact.repository';
@@ -19,7 +20,8 @@ const Quiz = () => {
     const [email, setEmail] = useState('')
     const [progressPercentage, setProgressPercentage] = useState(((countPerguntas+1) * 100)/perguntas.length)
 
-    const nextQuestion = (indexResposta) => {
+    const nextQuestion = async (indexResposta, textoResposta) => {
+        registerAnswer(quiz._id, perguntaAtual.texto, textoResposta)
         const newFlow = flow + `${countPerguntas}${indexResposta}`
         setFlow(newFlow)
 
@@ -36,11 +38,12 @@ const Quiz = () => {
     const finishQuiz = async (e) => {
         setLoading(true)
         e.preventDefault();
+        await registerLead(quiz._id)
         let redirecionamento = quiz.fluxos[flow].redirecionamento || 'https://lifeandmoney.com.br/'
         if (!redirecionamento.includes('http')) redirecionamento = `https://${redirecionamento}`
         createContact(name, email, quiz._id)
         window.location.href = redirecionamento
-        // setLoading(false)
+
         return false
     }
 
@@ -57,6 +60,7 @@ const Quiz = () => {
                 const quiz = await getById(key)
                 setInitialStates(quiz)
                 setLoading(false)
+                await registerAccess(quiz._id)
             } catch (error) {
                 console.log('Falha ao buscar dados do quiz')
             }
@@ -106,7 +110,7 @@ const Quiz = () => {
                                                     type="button"
                                                     value={resposta.texto}
                                                     className="Quiz-resposta"
-                                                    onClick={() => nextQuestion(index)}
+                                                    onClick={() => nextQuestion(index, resposta.texto)}
                                                 />
                                             )
                                         })
