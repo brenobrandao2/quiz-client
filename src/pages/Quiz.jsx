@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import '../css/Quiz.css'
 import { Quiz as QuizClass, getById } from '../repository/quiz.repository'
 import { registerAccess, registerAnswer, registerLead } from '../repository/metric.repository'
@@ -9,6 +9,7 @@ import { createContact } from '../repository/contact.repository';
 
 const Quiz = () => {
     const { key } = useParams()
+    const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [quiz, setQuiz] = useState(new QuizClass())
     const [perguntas, setPerguntas] = useState([new Pergunta()])
@@ -41,7 +42,10 @@ const Quiz = () => {
         await registerLead(quiz._id)
         let redirecionamento = quiz.fluxos[flow].redirecionamento || 'https://lifeandmoney.com.br/'
         if (!redirecionamento.includes('http')) redirecionamento = `https://${redirecionamento}`
-        createContact(name, email, quiz._id)
+        await createContact(name, email, quiz._id)
+        
+        history.replace('/')
+
         window.location.href = redirecionamento
 
         return false

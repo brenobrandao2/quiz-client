@@ -18,7 +18,11 @@ export const registerAccess = async (_id) => {
         })
     }
 
-    await fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    try {
+        await fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    } catch(error) {
+        console.log(error)
+    }
 }
 
 export const registerAnswer = async (_id, pergunta, resposta) => {
@@ -39,7 +43,11 @@ export const registerAnswer = async (_id, pergunta, resposta) => {
         })
     }
 
-    await fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    try {
+        await fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const registerLead = async (_id) => {
@@ -60,5 +68,9 @@ export const registerLead = async (_id) => {
         })
     }
 
-    await fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    try {
+        fetch(`${base_url_db}/quiz/registerMetric`, opt).then(response => response.json())
+    } catch(error) {
+        console.log(error)
+    }
 }

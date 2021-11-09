@@ -41,3 +41,21 @@ export const getById = async (key) => {
     return new Quiz(_id, nome, titulo, subtitulo, imagem, duplicidade, perguntas, cardFinal, createdAt, lastModified, fluxos)
 
 }
+
+export const getImages = async () => {
+    const opt = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }
+
+    let allImages = []
+    try {
+        allImages = await fetch(`${base_url_db}/quiz/getImages`, opt).then(response => response.json())
+    } catch(error) {
+        console.log('Falha ao buscar imagens')
+    }
+    
+    return allImages
+}

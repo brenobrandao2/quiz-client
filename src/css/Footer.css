@@ -39,6 +39,7 @@
     .Footer-footer {
         flex-direction: column;
         position: relative;
+        margin-top: 40px;
     }
     .Footer-direitos {
         font-size: 4vw;

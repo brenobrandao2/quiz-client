@@ -14,7 +14,7 @@ export const createContact = async (name, email, id_quiz) => {
     }
     
     try {
-        await fetch(`${base_url_db}/contacts/create`, opt).then(async response => console.log(await response.json()))
+        fetch(`${base_url_db}/contacts/create`, opt).then(async response => console.log(await response.json()))
     } catch (error) {
         console.log(error)
     }
