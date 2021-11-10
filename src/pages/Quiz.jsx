@@ -39,7 +39,6 @@ const Quiz = () => {
     const finishQuiz = async (e) => {
         setLoading(true)
         e.preventDefault();
-        await registerLead(quiz._id)
         let redirecionamento = quiz.fluxos[flow].redirecionamento || 'https://lifeandmoney.com.br/'
         if (!redirecionamento.includes('http')) redirecionamento = `https://${redirecionamento}`
         await createContact(name, email, quiz._id)
