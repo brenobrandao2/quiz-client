@@ -136,6 +136,7 @@
     -moz-appearance: none;
     appearance: none;
     font-size: 16px;
+    color: rgb(0, 0, 0);
 }
 
 .Quiz-resposta:hover {
@@ -172,7 +173,7 @@
 .Quiz-tituloCF {
     font-size: 30px;
     font-weight: bold;
-    color: rgba(251, 188, 5, 0.7);
+    color: rgb(0, 0, 0);
     margin: 20px 10px 15px 10px;
 }
 
@@ -204,6 +205,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    color : rgb(0, 0, 0);
 }
 
 .Quiz-finalButton:hover {
@@ -329,6 +331,7 @@ input:focus {
         font-size: 3.4vw;
         height: 7vh;
         min-height: 40px;
+        color: rgb(0, 0, 0);
     }
     .Quiz-resposta:hover {
         background-color: rgb(251, 188, 5);
