@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import '../css/Quiz.css'
 import { Quiz as QuizClass, getById } from '../repository/quiz.repository'
-import { registerAccess, registerAnswer, registerLead } from '../repository/metric.repository'
+import { registerAccess, registerAnswer } from '../repository/metric.repository'
 
 import { Pergunta } from '../repository/pergunta.repository';
 import { createContact } from '../repository/contact.repository';
 
 const Quiz = () => {
     const { key } = useParams()
+    const location = useLocation()
+    const urlParams = location.search || ''
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [quiz, setQuiz] = useState(new QuizClass())
@@ -39,7 +41,7 @@ const Quiz = () => {
     const finishQuiz = async (e) => {
         setLoading(true)
         e.preventDefault();
-        let redirecionamento = quiz.fluxos[flow].redirecionamento || 'https://lifeandmoney.com.br/'
+        let redirecionamento = quiz.fluxos[flow].redirecionamento ? `${quiz.fluxos[flow].redirecionamento}${urlParams}` : `https://lifeandmoney.com.br/${urlParams}`
         if (!redirecionamento.includes('http')) redirecionamento = `https://${redirecionamento}`
         await createContact(name, email, quiz._id)
         
